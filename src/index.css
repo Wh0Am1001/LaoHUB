@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-bg text-slate-100 font-sans antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+  ::selection {
+    @apply bg-primary-500/40;
+  }
+  * {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+  }
+  /* Native <select> dropdown popups are rendered by the OS/browser, not by
+     our CSS, so the closed-state trigger can be themed via .input-base but
+     the open popup ignores Tailwind classes. `color-scheme: dark` tells
+     supporting browsers (Chrome, Edge, Firefox) to use their dark native
+     widget palette, and styling <option> directly sets the popup's
+     background/text colors in browsers that respect it. Safari desktop
+     does not honor option styling and will still show its own native
+     popup regardless. */
+  select {
+    color-scheme: dark;
+  }
+  select option {
+    background-color: #000000;
+    color: #a78bfa;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-gradient-glass backdrop-blur-xl border border-white/10;
+  }
+  .card-base {
+    @apply bg-card rounded-card border border-white/5 shadow-soft;
+  }
+  .btn-primary {
+    @apply bg-gradient-brand text-white font-medium rounded-xl px-5 py-2.5 shadow-glow transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-secondary {
+    @apply bg-white/5 text-slate-100 font-medium rounded-xl px-5 py-2.5 border border-white/10 transition-colors duration-200 hover:bg-white/10 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .input-base {
+    @apply w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-slate-100 placeholder:text-slate-500 outline-none transition-colors focus:border-primary-500/60 focus:bg-white/[0.07];
+  }
+  .stat-chip {
+    @apply font-mono text-xs tracking-wide text-slate-300 bg-white/5 border border-white/10 rounded-full px-2.5 py-1;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
